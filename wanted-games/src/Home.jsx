@@ -7,19 +7,19 @@ export default function Home() {
       style={{
         marginTop: "100px",
         marginBottom: "100px",
-        // backgroundColor: "#D4CAF5",
+        backgroundColor: "#D4CAF5",
       }}
     >
       <div
         className="row flex-lg-row-reverse align-items-center py-5"
         style={{
-        //   backgroundColor: "#D4CAF5",
+          backgroundColor: "#D4CAF5",
         }}
       >
         <div
           className="col-10 col-sm-8 col-lg-6"
           style={{
-            // backgroundColor: "#D4CAF5",
+            backgroundColor: "#D4CAF5",
           }}
         >
           <img
