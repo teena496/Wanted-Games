@@ -1,0 +1,33 @@
+.game-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about {
+  padding: 200px;
+  background-color: #c3f2e4;
+}
+
+.about-details {
+  padding: 50px;
+}
+
+.slider-container {
+  padding-top: 150px;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+@media (max-width: 1024px) {
+  .about {
+    padding: 10px;
+    background-color: #c3f2e4;
+  }
+
+  .about-details {
+    padding: 10px;
+  }
+}

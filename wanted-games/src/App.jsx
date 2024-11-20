@@ -1,16 +1,22 @@
-import wantedGamesLogo from "./assets/logo.png";
+import About from "./About";
 import "./App.css";
+import Home from "./Home";
+import Navbar from "./Navbar";
+import Carousel from "./Carousel";
+import Games from "./Games";
+import Footer from "./Footer";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="/">
-          <img src={wantedGamesLogo} className="logo" alt="Wanted games logo" />
-        </a>
-      </div>
-    </>
+    <div>
+      <Navbar />
+      <main role="main" style={{ backgroundColor: "#D4CAF5" }}>
+        <Home />
+        <About />
+        <Carousel />
+      </main>
+      <Games />
+      <Footer />
+    </div>
   );
 }
-
-export default App;
