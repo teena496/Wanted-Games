@@ -1,35 +1,46 @@
-import collectionIcon from "./assets/collection.svg";
-import peopleIcon from "./assets/people.svg";
-import clockIcon from "./assets/clock-history.svg";
-
-export default function GameFeatures() {
+export default function GameFeatures(props) {
   return (
-    <div className="row g-4 py-5 row-cols-lg-3">
-      <div className="feature col">
+    <div
+      className="row g-4 py-5 row-cols-lg-3"
+      style={{ backgroundColor: props.backgroundColor }}
+    >
+      <div
+        className="feature col"
+        style={{ backgroundColor: props.backgroundColor }}
+      >
         <img
           className="featurette-image img-fluid mx-auto"
           alt="150x150"
-          src={collectionIcon}
-          height={50}
-          width={50}
+          src={props.gameTimeIcon}
+          height={100}
+          width={100}
+          style={{ backgroundColor: props.backgroundColor }}
         />
       </div>
-      <div className="feature col">
+      <div
+        className="feature col"
+        style={{ backgroundColor: props.backgroundColor }}
+      >
         <img
           className="featurette-image img-fluid mx-auto"
           alt="150x150"
-          src={peopleIcon}
-          height={50}
-          width={50}
+          src={props.gamePlayersIcon}
+          height={100}
+          width={100}
+          style={{ backgroundColor: props.backgroundColor }}
         />
       </div>
-      <div className="feature col">
+      <div
+        className="feature col"
+        style={{ backgroundColor: props.backgroundColor }}
+      >
         <img
           className="featurette-image img-fluid mx-auto"
           alt="150x150"
-          src={clockIcon}
-          height={50}
-          width={50}
+          src={props.gameAgeIcon}
+          height={100}
+          width={100}
+          style={{ backgroundColor: props.backgroundColor }}
         />
       </div>
     </div>
