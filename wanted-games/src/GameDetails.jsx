@@ -2,21 +2,21 @@ import GameFeatures from "./GameFeatures";
 
 export default function GameDetails(props) {
   const gameDetailsOrderClass =
-    props.id % 2 === 0 ? `order-md-2` : `order-md-1`;
-  const gameImageOrderClass = props.id % 2 === 0 ? `order-md-1` : `order-md-2`;
+    props.sortId % 2 === 0 ? `order-md-1 col-md-7` : `order-md-2 col-md-6`;
+  const gameImageOrderClass =
+    props.sortId % 2 === 0 ? `order-md-2 col-md-5` : `order-md-1 col-md-6`;
 
   return (
     <div
-      className="rounded-3 border shadow-lg "
-      style={{ marginBottom: "100px", backgroundColor: props.backgroundColor }}
+      className="rounded-3 border shadow-lg my-5 py-5"
+      style={{ backgroundColor: props.backgroundColor }}
     >
-      <br style={{ margin: "100px" }}></br>
       <div
-        className="row featurette "
-        style={{ margin: "100px", backgroundColor: props.backgroundColor }}
+        className="row featurette m-3 p-3 m-md-5 p-md-5"
+        style={{ backgroundColor: props.backgroundColor }}
       >
         <div
-          className={`col-md-6 game-details ${gameDetailsOrderClass}`}
+          className={`${gameDetailsOrderClass}`}
           style={{ backgroundColor: props.backgroundColor }}
         >
           <h1
@@ -29,26 +29,22 @@ export default function GameDetails(props) {
             {props.gameTitle}
           </h1>
           <p
-            className="lead"
+            className="lead lh-base fs-4"
             style={{
-              lineHeight: "1.5",
-              fontSize: "1.5rem",
               backgroundColor: props.backgroundColor,
               color: props.textColor,
             }}
           >
-            {props.gameDescription[0]}
+            {props.gameDescription1}
           </p>
           <p
-            className="lead"
+            className="lead lh-base fs-4"
             style={{
-              lineHeight: "1.5",
-              fontSize: "1.5rem",
               backgroundColor: props.backgroundColor,
               color: props.textColor,
             }}
           >
-            {props.gameDescription[1]}
+            {props.gameDescription2}
           </p>
 
           <GameFeatures
@@ -59,13 +55,14 @@ export default function GameDetails(props) {
           />
         </div>
         <div
-          className={`col-md-6 ${gameImageOrderClass}`}
+          className={`${gameImageOrderClass}`}
           style={{ backgroundColor: props.backgroundColor }}
         >
           <img
             className="featurette-image img-fluid mx-auto"
-            alt="400x400"
-            src={props.gameImage}
+            alt="Game Image"
+            src={`data:image/png+xml;base64,${props.gameImage}`}
+            // src={props.gameImage}
             width={450}
             height={450}
             style={{ backgroundColor: props.backgroundColor }}

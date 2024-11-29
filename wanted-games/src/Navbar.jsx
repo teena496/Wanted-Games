@@ -3,57 +3,58 @@ import wantedGamesLogo from "./assets/logo.png";
 export default function Navbar() {
   return (
     <header>
-      <nav className="navbar navbar-expand-md fixed-top ">
+      <nav className="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-light fixed-top">
         <a className="navbar-brand" href="#">
-          <img src={wantedGamesLogo} alt="Wanted games logo" height={50} />
+          <img src={wantedGamesLogo} alt="Wanted games logo" height={40} />
         </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarCollapse"
-          aria-controls="navbarCollapse"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+
         <div
           className="collapse navbar-collapse justify-content-end"
-          id="navbarCollapse"
+          id="navbarNav"
         >
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
+          <ul className="navbar-nav">
+            <li className="nav-item active">
               <a
-                className="nav-link"
+                className="nav-link fs-4 fw-bold"
                 href="#about"
-                style={{ textDecoration: "none", padding: "30px" }}
+                style={{
+                  textDecoration: "none",
+                  paddingLeft: "20px",
+                  paddingRight: "20px",
+                  textTransform: "uppercase",
+                }}
               >
-                <h3
-                  style={{
-                    textTransform: "uppercase",
-                  }}
-                >
-                  About Us
-                </h3>
+                <h3>About Us</h3>
+                <span className="sr-only">(current)</span>
               </a>
             </li>
             <li className="nav-item">
               <a
-                className="nav-link"
+                className="nav-link fs-4 fw-bold"
                 href="#games"
-                style={{ textDecoration: "none", padding: "30px" }}
+                style={{
+                  textDecoration: "none",
+                  paddingLeft: "20px",
+                  paddingRight: "20px",
+                  textTransform: "uppercase",
+                }}
               >
-                <h3 style={{ textTransform: "uppercase" }}>Games</h3>
+                <h3> Games</h3>
               </a>
             </li>
             <li className="nav-item">
               <a
-                className="nav-link"
+                className="nav-link fs-4 fw-bold"
                 href="#contact"
-                style={{ textDecoration: "none", padding: "30px" }}
+                style={{
+                  textDecoration: "none",
+                  paddingLeft: "20px",
+                  paddingRight: "20px",
+                  textTransform: "uppercase",
+                  // fontWeight: 700,
+                }}
               >
-                <h3 style={{ textTransform: "uppercase" }}>Contact Us</h3>
+                <h3> Contact Us</h3>
               </a>
             </li>
           </ul>

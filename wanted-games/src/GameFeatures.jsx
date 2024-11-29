@@ -10,8 +10,9 @@ export default function GameFeatures(props) {
       >
         <img
           className="featurette-image img-fluid mx-auto"
-          alt="150x150"
-          src={props.gameTimeIcon}
+          alt="Game Time Icon"
+          src={`data:image/png+xml;base64,${props.gameTimeIcon}`}
+          // src={props.gameTimeIcon}
           height={100}
           width={100}
           style={{ backgroundColor: props.backgroundColor }}
@@ -23,8 +24,9 @@ export default function GameFeatures(props) {
       >
         <img
           className="featurette-image img-fluid mx-auto"
-          alt="150x150"
-          src={props.gamePlayersIcon}
+          alt="Game Players Icon"
+          src={`data:image/png+xml;base64,${props.gamePlayersIcon}`}
+          // src={props.gamePlayersIcon}
           height={100}
           width={100}
           style={{ backgroundColor: props.backgroundColor }}
@@ -36,8 +38,9 @@ export default function GameFeatures(props) {
       >
         <img
           className="featurette-image img-fluid mx-auto"
-          alt="150x150"
-          src={props.gameAgeIcon}
+          alt="Game Age Icon"
+          src={`data:image/png+xml;base64,${props.gameAgeIcon}`}
+          // src={props.gameAgeIcon}
           height={100}
           width={100}
           style={{ backgroundColor: props.backgroundColor }}
