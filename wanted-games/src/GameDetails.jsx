@@ -8,7 +8,7 @@ export default function GameDetails(props) {
 
   return (
     <div
-      className="rounded-3 border shadow-lg my-5 py-5"
+      className="rounded-3 border shadow-lg my-5"
       style={{ backgroundColor: props.backgroundColor }}
     >
       <div
@@ -26,7 +26,17 @@ export default function GameDetails(props) {
               color: props.textColor,
             }}
           >
-            {props.gameTitle}
+            <a
+              href={props.gameLink}
+              style={{
+                textDecoration: "none",
+                color: "black",
+                fontFamily: "Cinzel",
+              }}
+              target="_blank"
+            >
+              {props.gameTitle}
+            </a>
           </h1>
           <p
             className="lead lh-base fs-4"
@@ -58,15 +68,16 @@ export default function GameDetails(props) {
           className={`${gameImageOrderClass}`}
           style={{ backgroundColor: props.backgroundColor }}
         >
-          <img
-            className="featurette-image img-fluid mx-auto"
-            alt="Game Image"
-            src={`data:image/png+xml;base64,${props.gameImage}`}
-            // src={props.gameImage}
-            width={450}
-            height={450}
-            style={{ backgroundColor: props.backgroundColor }}
-          />
+          <a href={props.gameLink} target="_blank">
+            <img
+              className="featurette-image img-fluid mx-auto"
+              alt="Game Image"
+              src={props.gameImage}
+              width={450}
+              height={450}
+              style={{ backgroundColor: props.backgroundColor }}
+            />
+          </a>
         </div>
       </div>
     </div>

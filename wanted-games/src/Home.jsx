@@ -1,11 +1,62 @@
+import { useState, useEffect } from "react";
 import homeImage from "./assets/home-image.png";
-// import gifImage from "./assets/gif.webp";
-
 import instagramIcon from "./assets/instagram.svg";
 import linkedinIcon from "./assets/linkedin.svg";
 import facebookIcon from "./assets/facebook.svg";
+import { social } from "./services";
 
 export default function Home() {
+  const homeTagline = "Unbox fun, Roll into Adventure!";
+  const sampleSocialMedia = [
+    {
+      id: 1,
+      image: instagramIcon,
+      sort_id: 1,
+      url: "https://www.instagram.com/wanted_games_ukr/",
+    },
+    {
+      id: 2,
+      image: facebookIcon,
+      sort_id: 1,
+      url: "https://www.facebook.com/wanted.games.ukr",
+    },
+    {
+      id: 3,
+      image: linkedinIcon,
+      sort_id: 1,
+      url: "https://www.linkedin.com",
+    },
+  ];
+  const [socialMediaLinks, setSocialMediaLinks] = useState([]);
+  // const [imageData, setImageData] = useState([]);
+
+  useEffect(() => {
+    fetchSocialData();
+    // fetchMediaData();
+  }, []);
+
+  // const fetchMediaData = async () => {
+  //   try {
+  //     const data = await media();
+  //     console.log("MEDIA", data);
+
+  //     let backgroundImage = data.find((x) => x.label === "background-image");
+  //     console.log(backgroundImage);
+  //     setImageData(backgroundImage);
+  //   } catch (error) {
+  //     console.error("Error fetching media data", error);
+  //   }
+  // };
+
+  const fetchSocialData = async () => {
+    try {
+      const data = await social();
+      setSocialMediaLinks(data);
+    } catch (error) {
+      console.error("Error fetching social media data", error);
+    }
+  };
+
   const backgroundColor = "#C3F2E4";
   return (
     <div
@@ -58,11 +109,10 @@ export default function Home() {
           }}
         >
           <div
-            className="display-4 d-md-3 text-body-emphasis text-center lh-6 mb-1 cursor text-animation "
+            className="display-4 d-md-3 text-body-emphasis text-center lh-base mb-1 cursor"
             style={{
               backgroundColor: backgroundColor,
               justifyContent: "center",
-              lineHeight: 2,
               fontFamily: "Cinzel Decorative",
             }}
           >
@@ -74,30 +124,9 @@ export default function Home() {
                 fontFamily: "Cinzel Decorative",
               }}
             >
-              Unbox fun,
+              {homeTagline}
             </div>
           </div>
-          <div
-            className="display-4 d-md-3 text-body-emphasis text-center lh-6 mb-1 cursor"
-            style={{
-              backgroundColor: backgroundColor,
-              justifyContent: "center",
-              lineHeight: 2,
-              fontFamily: "Cinzel Decorative",
-            }}
-          >
-            <div
-              style={{
-                backgroundColor: backgroundColor,
-                justifyContent: "center",
-                lineHeight: 2,
-                fontFamily: "Cinzel Decorative",
-              }}
-            >
-              Roll into Adventure!
-            </div>
-          </div>
-
           <h2
             className="display-6 d-md-3 text-body-emphasis text-center lh-6 mb-1 "
             style={{
@@ -108,36 +137,47 @@ export default function Home() {
           >
             Follow us !
             <br />
-            <a
-              href="https://www.instagram.com/wanted_games_ukr/"
-              style={{ backgroundColor: backgroundColor }}
-              target="_blank"
-            >
-              <img
-                className="m-3 m-sm-5"
-                src={instagramIcon}
-                alt=""
-                style={{ backgroundColor: backgroundColor }}
-                width={45}
-                height={45}
-              />
-              <img
-                className="m-3 m-sm-5"
-                src={linkedinIcon}
-                alt=""
-                style={{ backgroundColor: backgroundColor }}
-                width={45}
-                height={45}
-              />
-              <img
-                className="m-3 m-sm-5"
-                src={facebookIcon}
-                alt=""
-                style={{ backgroundColor: backgroundColor }}
-                width={45}
-                height={45}
-              />
-            </a>
+            {socialMediaLinks.length
+              ? socialMediaLinks.map((socialMedia) => {
+                  return (
+                    <>
+                      <a
+                        href={socialMedia.url}
+                        style={{ backgroundColor: backgroundColor }}
+                        target="_blank"
+                      >
+                        <img
+                          className="m-3 m-sm-5"
+                          src={`data:image/png+xml;base64,${socialMedia.image}`}
+                          alt=""
+                          style={{ backgroundColor: backgroundColor }}
+                          width={45}
+                          height={45}
+                        />
+                      </a>
+                    </>
+                  );
+                })
+              : sampleSocialMedia.map((socialMedia) => {
+                  return (
+                    <>
+                      <a
+                        href={socialMedia.url}
+                        style={{ backgroundColor: backgroundColor }}
+                        target="_blank"
+                      >
+                        <img
+                          className="m-3 m-sm-5"
+                          src={socialMedia.image}
+                          alt=""
+                          style={{ backgroundColor: backgroundColor }}
+                          width={45}
+                          height={45}
+                        />
+                      </a>
+                    </>
+                  );
+                })}
           </h2>
         </div>
       </div>

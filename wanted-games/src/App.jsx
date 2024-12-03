@@ -6,6 +6,7 @@ import Carousel from "./Carousel";
 import Games from "./Games";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import Testimonials from "./Testimonials";
 
 export default function App() {
   return (
@@ -16,9 +17,9 @@ export default function App() {
         <About />
         <Carousel />
         <Games />
+        <Testimonials />
         <Contact />
       </div>
-
       <Footer />
     </>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import GameDetails from "./GameDetails";
-
+import { games } from "./services";
 import gameAltarImage from "./assets/game-altar.svg";
 import gameKoiImage from "./assets/game-koi.svg";
 import gameGoblinsImage from "./assets/game-goblins.svg";
@@ -40,6 +40,7 @@ export default function Games() {
       image_3: koiAgeIcon,
       background_color: "#C3F2E4",
       text_color: "#0C4E2A",
+      gameLink: "https://boardgamegeek.com/boardgame/11865/koi-koi",
     },
     {
       id: 1,
@@ -60,6 +61,7 @@ export default function Games() {
       image_3: goblinsAgeIcon,
       background_color: "#D4CAF5",
       text_color: "#2E0636",
+      gameLink: "http://gvsg.com.ua/",
     },
     {
       id: 2,
@@ -80,6 +82,7 @@ export default function Games() {
       image_3: lionAgeIcon,
       background_color: "#F8F8BC",
       text_color: "#0C4E2A",
+      gameLink: "https://tg.in.ua/boardgames/3565/lets-catch-lion",
     },
     {
       id: 3,
@@ -99,46 +102,71 @@ export default function Games() {
       image_3: altarAgeIcon,
       background_color: "#C3F2E4",
       text_color: "#093629",
+      gameLink: "https://caersidi.net/Altar",
     },
   ];
 
-  const [games, setGames] = useState([]);
+  const [gameData, setGameData] = useState([]);
 
   useEffect(() => {
     fetchGameData();
   }, []);
 
   const fetchGameData = async () => {
-    const response = await fetch("http://localhost:3000/api/games");
-    const data = await response.json();
-    console.log(data);
-    setGames(data);
-    setGames(sampleGameData);
+    try {
+      const data = await games();
+      setGameData(data);
+    } catch (error) {
+      console.error("Error fetching games", error);
+    }
   };
 
   return (
     <div id="games" className="container">
-      {games.map((game) => {
-        console.log(game);
-        return (
-          <>
-            <GameDetails
-              key={game.id}
-              id={game.id}
-              sortId={game.sort_id}
-              gameTitle={game.title}
-              gameDescription1={game.description_1}
-              gameDescription2={game.description_2}
-              gameImage={game.image_main}
-              gameTimeIcon={game.image_1}
-              gamePlayersIcon={game.image_2}
-              gameAgeIcon={game.image_3}
-              backgroundColor={game.background_color}
-              textColor={game.text_color}
-            />
-          </>
-        );
-      })}
+      <h1 className="display-4 text-center m-5 p-5">Our Games</h1>
+      {gameData.length
+        ? gameData.map((game) => {
+            return (
+              <>
+                <GameDetails
+                  key={game.id}
+                  id={game.id}
+                  sortId={game.sort_id}
+                  gameTitle={game.title}
+                  gameDescription1={game.description_1}
+                  gameDescription2={game.description_2}
+                  gameImage={`data:image/png+xml;base64,${game.image_main}`}
+                  gameTimeIcon={`data:image/png+xml;base64,${game.image_1}`}
+                  gamePlayersIcon={`data:image/png+xml;base64,${game.image_2}`}
+                  gameAgeIcon={`data:image/png+xml;base64,${game.image_3}`}
+                  backgroundColor={game.background_color}
+                  textColor={game.text_color}
+                  gameLink={game.gameLink}
+                />
+              </>
+            );
+          })
+        : sampleGameData.map((game) => {
+            return (
+              <>
+                <GameDetails
+                  key={game.id}
+                  id={game.id}
+                  sortId={game.sort_id}
+                  gameTitle={game.title}
+                  gameDescription1={game.description_1}
+                  gameDescription2={game.description_2}
+                  gameImage={game.image_main}
+                  gameTimeIcon={game.image_1}
+                  gamePlayersIcon={game.image_2}
+                  gameAgeIcon={game.image_3}
+                  backgroundColor={game.background_color}
+                  textColor={game.text_color}
+                  gameLink={game.gameLink}
+                />
+              </>
+            );
+          })}
     </div>
   );
 }
