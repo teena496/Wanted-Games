@@ -34,13 +34,13 @@ export default function Games() {
             risks their opponent earning more points. It’s a strategic blend of
           matching, timing, and calculated risks, celebrated for its cultural
           significance and aesthetic beauty.`,
-      image_main: gameKoiImage,
-      image_1: koiTimeIcon,
-      image_2: koiPlayersIcon,
-      image_3: koiAgeIcon,
+      image_main_url: gameKoiImage,
+      image_1_url: koiTimeIcon,
+      image_2_url: koiPlayersIcon,
+      image_3_url: koiAgeIcon,
       background_color: "#C3F2E4",
       text_color: "#0C4E2A",
-      gameLink: "https://boardgamegeek.com/boardgame/11865/koi-koi",
+      url: "https://boardgamegeek.com/boardgame/11865/koi-koi",
     },
     {
       id: 1,
@@ -55,13 +55,13 @@ export default function Games() {
           resource management, and unpredictable events, creating chaotic and
           fun battles. Suitable for competitive or casual play, it’s packed
           with humor and engaging gameplay.`,
-      image_main: gameGoblinsImage,
-      image_1: goblinsTimeIcon,
-      image_2: goblinsPlayersIcon,
-      image_3: goblinsAgeIcon,
+      image_main_url: gameGoblinsImage,
+      image_1_url: goblinsTimeIcon,
+      image_2_url: goblinsPlayersIcon,
+      image_3_url: goblinsAgeIcon,
       background_color: "#D4CAF5",
       text_color: "#2E0636",
-      gameLink: "http://gvsg.com.ua/",
+      url: "http://gvsg.com.ua/",
     },
     {
       id: 2,
@@ -76,13 +76,13 @@ export default function Games() {
           designs make it easy to learn, while still offering strategic depth.
           It’s a delightful way to introduce kkeys to logical thinking and
           Japanese culture.`,
-      image_main: gameLionImage,
-      image_1: lionTimeIcon,
-      image_2: lionPlayersIcon,
-      image_3: lionAgeIcon,
+      image_main_url: gameLionImage,
+      image_1_url: lionTimeIcon,
+      image_2_url: lionPlayersIcon,
+      image_3_url: lionAgeIcon,
       background_color: "#F8F8BC",
       text_color: "#0C4E2A",
-      gameLink: "https://tg.in.ua/boardgames/3565/lets-catch-lion",
+      url: "https://tg.in.ua/boardgames/3565/lets-catch-lion",
     },
     {
       id: 3,
@@ -96,13 +96,13 @@ export default function Games() {
             management, tactical positioning, and asymmetric powers, offering
             deep strategic gameplay and high replayability. Perfect for fans of
             competitive and thematic experiences.`,
-      image_main: gameAltarImage,
-      image_1: altarTimeIcon,
-      image_2: altarPlayersIcon,
-      image_3: altarAgeIcon,
+      image_main_url: gameAltarImage,
+      image_1_url: altarTimeIcon,
+      image_2_url: altarPlayersIcon,
+      image_3_url: altarAgeIcon,
       background_color: "#C3F2E4",
       text_color: "#093629",
-      gameLink: "https://caersidi.net/Altar",
+      url: "https://caersidi.net/Altar",
     },
   ];
 
@@ -135,13 +135,13 @@ export default function Games() {
                   gameTitle={game.title}
                   gameDescription1={game.description_1}
                   gameDescription2={game.description_2}
-                  gameImage={`data:image/png+xml;base64,${game.image_main}`}
-                  gameTimeIcon={`data:image/png+xml;base64,${game.image_1}`}
-                  gamePlayersIcon={`data:image/png+xml;base64,${game.image_2}`}
-                  gameAgeIcon={`data:image/png+xml;base64,${game.image_3}`}
+                  gameImage={game.image_main_url}
+                  gameTimeIcon={game.image_1_url}
+                  gamePlayersIcon={game.image_2_url}
+                  gameAgeIcon={game.image_3_url}
                   backgroundColor={game.background_color}
                   textColor={game.text_color}
-                  gameLink={game.gameLink}
+                  gameLink={game.url}
                 />
               </>
             );
@@ -156,13 +156,13 @@ export default function Games() {
                   gameTitle={game.title}
                   gameDescription1={game.description_1}
                   gameDescription2={game.description_2}
-                  gameImage={game.image_main}
-                  gameTimeIcon={game.image_1}
-                  gamePlayersIcon={game.image_2}
-                  gameAgeIcon={game.image_3}
+                  gameImage={game.image_main_url}
+                  gameTimeIcon={game.image_1_url}
+                  gamePlayersIcon={game.image_2_url}
+                  gameAgeIcon={game.image_3_url}
                   backgroundColor={game.background_color}
                   textColor={game.text_color}
-                  gameLink={game.gameLink}
+                  gameLink={game.url}
                 />
               </>
             );
