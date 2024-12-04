@@ -14,37 +14,37 @@ function Carousel() {
   const sampleGalleryData = [
     {
       id: 1,
-      image: sliderImage1,
+      image_url: sliderImage1,
       sort_id: 1,
     },
     {
       id: 2,
-      image: sliderImage2,
+      image_url: sliderImage2,
       sort_id: 2,
     },
     {
       id: 3,
-      image: sliderImage3,
+      image_url: sliderImage3,
       sort_id: 3,
     },
     {
       id: 4,
-      image: sliderImage4,
+      image_url: sliderImage4,
       sort_id: 4,
     },
     {
       id: 5,
-      image: sliderImage5,
+      image_url: sliderImage5,
       sort_id: 5,
     },
     {
       id: 6,
-      image: sliderImage6,
+      image_url: sliderImage6,
       sort_id: 6,
     },
     {
       id: 7,
-      image: sliderImage7,
+      image_url: sliderImage7,
       sort_id: 7,
     },
   ];
@@ -83,7 +83,7 @@ function Carousel() {
                     return (
                       <img
                         key={image.id}
-                        src={`data:image/png+xml;base64,${image.image}`}
+                        src={image.image_url}
                         alt="sliderImage"
                         width="100%"
                         height="auto"
@@ -95,7 +95,7 @@ function Carousel() {
                     return (
                       <img
                         key={image.id}
-                        src={image.image}
+                        src={image.image_url}
                         alt="sliderImage"
                         width="100%"
                         height="auto"

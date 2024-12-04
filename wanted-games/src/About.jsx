@@ -42,7 +42,7 @@ export default function About() {
         className="row p-md-5 p-sm-4 align-items-center rounded-3 border shadow-lg about-background-image"
         style={{
           backgroundImage: aboutData.image
-            ? `url("data:image/png+xml;base64,${aboutData.image}")`
+            ? `url(${aboutData.image})`
             : `url(${aboutBackgroundImage})`,
         }}
       >

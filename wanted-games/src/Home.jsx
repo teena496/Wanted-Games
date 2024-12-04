@@ -3,50 +3,59 @@ import homeImage from "./assets/home-image.png";
 import instagramIcon from "./assets/instagram.svg";
 import linkedinIcon from "./assets/linkedin.svg";
 import facebookIcon from "./assets/facebook.svg";
-import { social } from "./services";
+import { social, home } from "./services";
 
 export default function Home() {
-  const homeTagline = "Unbox fun, Roll into Adventure!";
+  const backgroundColor = "#C3F2E4";
+  const sampleHomeData = [
+    {
+      id: 1,
+      sort_id: 1,
+      image_url: homeImage,
+      header: "Unbox fun, Roll into Adventure!",
+      paragraph_1: "",
+      paragraph_2: "",
+    },
+  ];
+
   const sampleSocialMedia = [
     {
       id: 1,
-      image: instagramIcon,
+      image_url: instagramIcon,
       sort_id: 1,
       url: "https://www.instagram.com/wanted_games_ukr/",
     },
     {
       id: 2,
-      image: facebookIcon,
+      image_url: facebookIcon,
       sort_id: 1,
       url: "https://www.facebook.com/wanted.games.ukr",
     },
     {
       id: 3,
-      image: linkedinIcon,
+      image_url: linkedinIcon,
       sort_id: 1,
-      url: "https://www.linkedin.com",
+      url: "https://www.linkedin.com/company/wanted-games-ukraine/",
     },
   ];
+
   const [socialMediaLinks, setSocialMediaLinks] = useState([]);
-  // const [imageData, setImageData] = useState([]);
+  const [homeData, setHomeData] = useState([]);
 
   useEffect(() => {
     fetchSocialData();
-    // fetchMediaData();
+    fetchHomeData();
   }, []);
 
-  // const fetchMediaData = async () => {
-  //   try {
-  //     const data = await media();
-  //     console.log("MEDIA", data);
-
-  //     let backgroundImage = data.find((x) => x.label === "background-image");
-  //     console.log(backgroundImage);
-  //     setImageData(backgroundImage);
-  //   } catch (error) {
-  //     console.error("Error fetching media data", error);
-  //   }
-  // };
+  const fetchHomeData = async () => {
+    try {
+      const data = await home();
+      setHomeData(data.length ? data : sampleHomeData);
+      setHomeData(sampleHomeData);
+    } catch (error) {
+      console.error("Error fetching home data", error);
+    }
+  };
 
   const fetchSocialData = async () => {
     try {
@@ -57,7 +66,6 @@ export default function Home() {
     }
   };
 
-  const backgroundColor = "#C3F2E4";
   return (
     <div
       className="container rounded-4 border shadow-lg"
@@ -81,16 +89,8 @@ export default function Home() {
             backgroundColor: backgroundColor,
           }}
         >
-          {/* <iframe
-            src={gifImage}
-            width="500"
-            height="500"
-            className="giphy-embed"
-            allowFullScreen
-          ></iframe> */}
-
           <img
-            src={homeImage}
+            src={homeData[0]?.image_url}
             className="d-block img-fluid shadow-lg "
             alt="HomeImage"
             width="500"
@@ -124,7 +124,27 @@ export default function Home() {
                 fontFamily: "Cinzel Decorative",
               }}
             >
-              {homeTagline}
+              {homeData[0]?.header}
+            </div>
+            <div
+              style={{
+                backgroundColor: backgroundColor,
+                justifyContent: "center",
+                lineHeight: 2,
+                fontFamily: "Cinzel Decorative",
+              }}
+            >
+              {homeData[0]?.paragraph_1}
+            </div>
+            <div
+              style={{
+                backgroundColor: backgroundColor,
+                justifyContent: "center",
+                lineHeight: 2,
+                fontFamily: "Cinzel Decorative",
+              }}
+            >
+              {homeData[0]?.paragraph_2}
             </div>
           </div>
           <h2
@@ -135,7 +155,7 @@ export default function Home() {
               fontFamily: "Cinzel",
             }}
           >
-            Follow us !
+            Follow Us!
             <br />
             {socialMediaLinks.length
               ? socialMediaLinks.map((socialMedia) => {
@@ -148,7 +168,7 @@ export default function Home() {
                       >
                         <img
                           className="m-3 m-sm-5"
-                          src={`data:image/png+xml;base64,${socialMedia.image}`}
+                          src={socialMedia.image_url}
                           alt=""
                           style={{ backgroundColor: backgroundColor }}
                           width={45}
@@ -168,7 +188,7 @@ export default function Home() {
                       >
                         <img
                           className="m-3 m-sm-5"
-                          src={socialMedia.image}
+                          src={socialMedia.image_url}
                           alt=""
                           style={{ backgroundColor: backgroundColor }}
                           width={45}

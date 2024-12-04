@@ -18,13 +18,13 @@ export default function Contact() {
   const samplePhoneNumber = [
     {
       id: 1,
-      image: canadaFlag,
+      image_url: canadaFlag,
       number: "+1 416 818 7147",
       sort_id: 1,
     },
     {
       id: 2,
-      image: ukraineFlag,
+      image_url: ukraineFlag,
       number: "+38 093 266 2988",
       sort_id: 1,
     },
@@ -33,19 +33,19 @@ export default function Contact() {
   const sampleSocialMedia = [
     {
       id: 1,
-      image: instagramIcon,
+      image_url: instagramIcon,
       sort_id: 1,
       url: "https://www.instagram.com/wanted_games_ukr/",
     },
     {
       id: 2,
-      image: facebookIcon,
+      image_url: facebookIcon,
       sort_id: 1,
       url: "https://www.facebook.com/wanted.games.ukr",
     },
     {
       id: 3,
-      image: linkedinIcon,
+      image_url: linkedinIcon,
       sort_id: 1,
       url: "https://www.linkedin.com",
     },
@@ -105,9 +105,9 @@ export default function Contact() {
       <div
         className="d-flex justify-content-center align-items-center rounded-3 border shadow-lg contact-background-image"
         style={{
-          backgroundImage: imageData.image
-            ? `url("data:image/png+xml;base64,${imageData.image}")`
-            : `url(${contactBackgroundImage}) `,
+          backgroundImage: imageData?.image_url
+            ? `url(${imageData.image_url})`
+            : `url(${contactBackgroundImage})`,
         }}
       >
         <div className="d-flex flex-column p-5 m-5 rounded-5 border shadow-lg">
@@ -141,7 +141,7 @@ export default function Contact() {
                     >
                       <img
                         key={`social-media-image-${socialmedia.id}`}
-                        src={`data:image/png+xml;base64,${socialmedia.image}`}
+                        src={socialmedia.image_url}
                         alt="Icon"
                         height={30}
                         style={{ marginLeft: "20px" }}
@@ -158,7 +158,7 @@ export default function Contact() {
                     >
                       <img
                         key={`social-media-image-${socialmedia.id}`}
-                        src={socialmedia.image}
+                        src={socialmedia.image_url}
                         alt="Icon"
                         height={30}
                         style={{ marginLeft: "20px" }}
@@ -177,7 +177,7 @@ export default function Contact() {
                         <li className="list-inline-item">
                           <img
                             className="m-2"
-                            src={`data:image/png+xml;base64,${phone.image}`}
+                            src={phone.image_url}
                             alt="Country icon"
                             height={30}
                           />
@@ -192,7 +192,7 @@ export default function Contact() {
                         <li className="list-inline-item">
                           <img
                             className="m-2"
-                            src={phone.image}
+                            src={phone.image_url}
                             alt="Country icon"
                             height={30}
                           />
