@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
-import homeImage from "./assets/home-image.png";
-import instagramIcon from "./assets/instagram.svg";
-import linkedinIcon from "./assets/linkedin.svg";
-import facebookIcon from "./assets/facebook.svg";
 import { social, home } from "./services";
+import placeholderImage from "./assets/placeholder.svg";
 
 export default function Home() {
   const backgroundColor = "#C3F2E4";
@@ -11,7 +8,7 @@ export default function Home() {
     {
       id: 1,
       sort_id: 1,
-      image_url: homeImage,
+      image_url: placeholderImage,
       header: "Unbox fun, Roll into Adventure!",
       paragraph_1: "",
       paragraph_2: "",
@@ -21,20 +18,20 @@ export default function Home() {
   const sampleSocialMedia = [
     {
       id: 1,
-      image_url: instagramIcon,
+      image_url: placeholderImage,
       sort_id: 1,
       url: "https://www.instagram.com/wanted_games_ukr/",
     },
     {
       id: 2,
-      image_url: facebookIcon,
-      sort_id: 1,
+      image_url: placeholderImage,
+      sort_id: 2,
       url: "https://www.facebook.com/wanted.games.ukr",
     },
     {
       id: 3,
-      image_url: linkedinIcon,
-      sort_id: 1,
+      image_url: placeholderImage,
+      sort_id: 3,
       url: "https://www.linkedin.com/company/wanted-games-ukraine/",
     },
   ];
@@ -51,7 +48,6 @@ export default function Home() {
     try {
       const data = await home();
       setHomeData(data.length ? data : sampleHomeData);
-      setHomeData(sampleHomeData);
     } catch (error) {
       console.error("Error fetching home data", error);
     }
@@ -60,7 +56,7 @@ export default function Home() {
   const fetchSocialData = async () => {
     try {
       const data = await social();
-      setSocialMediaLinks(data);
+      setSocialMediaLinks(data.length ? data : sampleSocialMedia);
     } catch (error) {
       console.error("Error fetching social media data", error);
     }
@@ -157,47 +153,28 @@ export default function Home() {
           >
             Follow Us!
             <br />
-            {socialMediaLinks.length
-              ? socialMediaLinks.map((socialMedia) => {
-                  return (
-                    <>
-                      <a
-                        href={socialMedia.url}
-                        style={{ backgroundColor: backgroundColor }}
-                        target="_blank"
-                      >
-                        <img
-                          className="m-3 m-sm-5"
-                          src={socialMedia.image_url}
-                          alt=""
-                          style={{ backgroundColor: backgroundColor }}
-                          width={45}
-                          height={45}
-                        />
-                      </a>
-                    </>
-                  );
-                })
-              : sampleSocialMedia.map((socialMedia) => {
-                  return (
-                    <>
-                      <a
-                        href={socialMedia.url}
-                        style={{ backgroundColor: backgroundColor }}
-                        target="_blank"
-                      >
-                        <img
-                          className="m-3 m-sm-5"
-                          src={socialMedia.image_url}
-                          alt=""
-                          style={{ backgroundColor: backgroundColor }}
-                          width={45}
-                          height={45}
-                        />
-                      </a>
-                    </>
-                  );
-                })}
+            {socialMediaLinks.map((socialMedia, index) => {
+              return (
+                <>
+                  <a
+                    key={`social-media-link-${index}`}
+                    href={socialMedia.url}
+                    style={{ backgroundColor: backgroundColor }}
+                    target="_blank"
+                  >
+                    <img
+                      key={`social-media-image-${index}`}
+                      className="m-3 m-sm-5"
+                      src={socialMedia.image_url}
+                      alt="Social Media Image"
+                      style={{ backgroundColor: backgroundColor }}
+                      width={45}
+                      height={45}
+                    />
+                  </a>
+                </>
+              );
+            })}
           </h2>
         </div>
       </div>

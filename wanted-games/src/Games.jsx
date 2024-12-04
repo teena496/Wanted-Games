@@ -1,22 +1,7 @@
 import { useEffect, useState } from "react";
 import GameDetails from "./GameDetails";
 import { games } from "./services";
-import gameAltarImage from "./assets/game-altar.svg";
-import gameKoiImage from "./assets/game-koi.svg";
-import gameGoblinsImage from "./assets/game-goblins.svg";
-import gameLionImage from "./assets/game-lion.svg";
-import koiTimeIcon from "./assets/koi-time.svg";
-import koiPlayersIcon from "./assets/koi-players.svg";
-import koiAgeIcon from "./assets/koi-age.svg";
-import lionTimeIcon from "./assets/lion-time.svg";
-import lionPlayersIcon from "./assets/lion-players.svg";
-import lionAgeIcon from "./assets/lion-age.svg";
-import goblinsTimeIcon from "./assets/goblins-time.svg";
-import goblinsPlayersIcon from "./assets/goblins-players.svg";
-import goblinsAgeIcon from "./assets/goblins-age.svg";
-import altarTimeIcon from "./assets/altar-time.svg";
-import altarPlayersIcon from "./assets/altar-players.svg";
-import altarAgeIcon from "./assets/altar-age.svg";
+import placeholderImage from "./assets/placeholder.svg";
 
 export default function Games() {
   const sampleGameData = [
@@ -34,10 +19,10 @@ export default function Games() {
             risks their opponent earning more points. It’s a strategic blend of
           matching, timing, and calculated risks, celebrated for its cultural
           significance and aesthetic beauty.`,
-      image_main_url: gameKoiImage,
-      image_1_url: koiTimeIcon,
-      image_2_url: koiPlayersIcon,
-      image_3_url: koiAgeIcon,
+      image_main_url: placeholderImage,
+      image_1_url: placeholderImage,
+      image_2_url: placeholderImage,
+      image_3_url: placeholderImage,
       background_color: "#C3F2E4",
       text_color: "#0C4E2A",
       url: "https://boardgamegeek.com/boardgame/11865/koi-koi",
@@ -45,7 +30,6 @@ export default function Games() {
     {
       id: 1,
       sort_id: 2,
-
       title: "Goblins vs Gnomes",
       description_1: `Goblins vs Gnomes is a fast-paced, tactical board game where players
           control wacky goblin and gnome factions vying for dominance. Each
@@ -55,10 +39,10 @@ export default function Games() {
           resource management, and unpredictable events, creating chaotic and
           fun battles. Suitable for competitive or casual play, it’s packed
           with humor and engaging gameplay.`,
-      image_main_url: gameGoblinsImage,
-      image_1_url: goblinsTimeIcon,
-      image_2_url: goblinsPlayersIcon,
-      image_3_url: goblinsAgeIcon,
+      image_main_url: placeholderImage,
+      image_1_url: placeholderImage,
+      image_2_url: placeholderImage,
+      image_3_url: placeholderImage,
       background_color: "#D4CAF5",
       text_color: "#2E0636",
       url: "http://gvsg.com.ua/",
@@ -66,7 +50,6 @@ export default function Games() {
     {
       id: 2,
       sort_id: 3,
-
       title: "Let’s Catch the Lion",
       description_1: `Let’s Catch the Lion! is a charming introductory board game based on
           Shogi (Japanese chess), designed for children. Players take turns
@@ -76,10 +59,10 @@ export default function Games() {
           designs make it easy to learn, while still offering strategic depth.
           It’s a delightful way to introduce kkeys to logical thinking and
           Japanese culture.`,
-      image_main_url: gameLionImage,
-      image_1_url: lionTimeIcon,
-      image_2_url: lionPlayersIcon,
-      image_3_url: lionAgeIcon,
+      image_main_url: placeholderImage,
+      image_1_url: placeholderImage,
+      image_2_url: placeholderImage,
+      image_3_url: placeholderImage,
       background_color: "#F8F8BC",
       text_color: "#0C4E2A",
       url: "https://tg.in.ua/boardgames/3565/lets-catch-lion",
@@ -96,10 +79,10 @@ export default function Games() {
             management, tactical positioning, and asymmetric powers, offering
             deep strategic gameplay and high replayability. Perfect for fans of
             competitive and thematic experiences.`,
-      image_main_url: gameAltarImage,
-      image_1_url: altarTimeIcon,
-      image_2_url: altarPlayersIcon,
-      image_3_url: altarAgeIcon,
+      image_main_url: placeholderImage,
+      image_1_url: placeholderImage,
+      image_2_url: placeholderImage,
+      image_3_url: placeholderImage,
       background_color: "#C3F2E4",
       text_color: "#093629",
       url: "https://caersidi.net/Altar",
@@ -115,7 +98,7 @@ export default function Games() {
   const fetchGameData = async () => {
     try {
       const data = await games();
-      setGameData(data);
+      setGameData(data.length ? data : sampleGameData);
     } catch (error) {
       console.error("Error fetching games", error);
     }
@@ -124,49 +107,27 @@ export default function Games() {
   return (
     <div id="games" className="container">
       <h1 className="display-4 text-center m-5 p-5">Our Games</h1>
-      {gameData.length
-        ? gameData.map((game) => {
-            return (
-              <>
-                <GameDetails
-                  key={game.id}
-                  id={game.id}
-                  sortId={game.sort_id}
-                  gameTitle={game.title}
-                  gameDescription1={game.description_1}
-                  gameDescription2={game.description_2}
-                  gameImage={game.image_main_url}
-                  gameTimeIcon={game.image_1_url}
-                  gamePlayersIcon={game.image_2_url}
-                  gameAgeIcon={game.image_3_url}
-                  backgroundColor={game.background_color}
-                  textColor={game.text_color}
-                  gameLink={game.url}
-                />
-              </>
-            );
-          })
-        : sampleGameData.map((game) => {
-            return (
-              <>
-                <GameDetails
-                  key={game.id}
-                  id={game.id}
-                  sortId={game.sort_id}
-                  gameTitle={game.title}
-                  gameDescription1={game.description_1}
-                  gameDescription2={game.description_2}
-                  gameImage={game.image_main_url}
-                  gameTimeIcon={game.image_1_url}
-                  gamePlayersIcon={game.image_2_url}
-                  gameAgeIcon={game.image_3_url}
-                  backgroundColor={game.background_color}
-                  textColor={game.text_color}
-                  gameLink={game.url}
-                />
-              </>
-            );
-          })}
+      {gameData.map((game) => {
+        return (
+          <>
+            <GameDetails
+              key={`game-${game.id}`}
+              id={game.id}
+              sortId={game.sort_id}
+              gameTitle={game.title}
+              gameDescription1={game.description_1}
+              gameDescription2={game.description_2}
+              gameImage={game.image_main_url}
+              gameTimeIcon={game.image_1_url}
+              gamePlayersIcon={game.image_2_url}
+              gameAgeIcon={game.image_3_url}
+              backgroundColor={game.background_color}
+              textColor={game.text_color}
+              gameLink={game.url}
+            />
+          </>
+        );
+      })}
     </div>
   );
 }

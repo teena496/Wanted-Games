@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import canadaFlag from "./assets/canada-flag.svg";
-import ukraineFlag from "./assets/ukraine-flag.svg";
-import instagramIcon from "./assets/instagram.svg";
-import linkedinIcon from "./assets/linkedin.svg";
-import facebookIcon from "./assets/facebook.svg";
-import contactBackgroundImage from "./assets/contact-image.svg";
 import { email, media, phone, social } from "./services";
+import placeholderImage from "./assets/placeholder.svg";
 
 export default function Contact() {
+  const sampleMediaData = {
+    id: 1,
+    image_url: placeholderImage,
+    label: "background_image",
+  };
   const sampleEmails = [
     {
       address: "wanted.games.production@gmail.com",
@@ -15,44 +15,44 @@ export default function Contact() {
     },
   ];
 
-  const samplePhoneNumber = [
+  const samplePhoneNumbers = [
     {
       id: 1,
-      image_url: canadaFlag,
+      image_url: placeholderImage,
       number: "+1 416 818 7147",
       sort_id: 1,
     },
     {
       id: 2,
-      image_url: ukraineFlag,
+      image_url: placeholderImage,
       number: "+38 093 266 2988",
-      sort_id: 1,
+      sort_id: 2,
     },
   ];
 
   const sampleSocialMedia = [
     {
       id: 1,
-      image_url: instagramIcon,
+      image_url: placeholderImage,
       sort_id: 1,
       url: "https://www.instagram.com/wanted_games_ukr/",
     },
     {
       id: 2,
-      image_url: facebookIcon,
-      sort_id: 1,
+      image_url: placeholderImage,
+      sort_id: 2,
       url: "https://www.facebook.com/wanted.games.ukr",
     },
     {
       id: 3,
-      image_url: linkedinIcon,
-      sort_id: 1,
+      image_url: placeholderImage,
+      sort_id: 3,
       url: "https://www.linkedin.com",
     },
   ];
 
   const [emails, setEmails] = useState([]);
-  const [phoneNumber, setPhoneNumber] = useState([]);
+  const [phoneNumbers, setPhoneNumbers] = useState([]);
   const [socialMediaLinks, setSocialMediaLinks] = useState([]);
   const [imageData, setImageData] = useState([]);
 
@@ -66,7 +66,7 @@ export default function Contact() {
   const fetchEmailData = async () => {
     try {
       const data = await email();
-      setEmails(data);
+      setEmails(data.length ? data : sampleEmails);
     } catch (error) {
       console.error("Error fetching emails", error);
     }
@@ -75,7 +75,7 @@ export default function Contact() {
   const fetchPhoneData = async () => {
     try {
       const data = await phone();
-      setPhoneNumber(data);
+      setPhoneNumbers(data.length ? data : samplePhoneNumbers);
     } catch (error) {
       console.error("Error fetching phone numbers", error);
     }
@@ -84,7 +84,7 @@ export default function Contact() {
   const fetchSocialData = async () => {
     try {
       const data = await social();
-      setSocialMediaLinks(data);
+      setSocialMediaLinks(data.length ? data : sampleSocialMedia);
     } catch (error) {
       console.error("Error fetching social media data", error);
     }
@@ -93,8 +93,8 @@ export default function Contact() {
   const fetchMediaData = async () => {
     try {
       const data = await media();
-      let backgroundImage = data.find((x) => x.label === "background-image");
-      setImageData(backgroundImage);
+      let backgroundImage = data.find((x) => x.label === "background_image");
+      setImageData(backgroundImage ? backgroundImage : sampleMediaData);
     } catch (error) {
       console.error("Error fetching media data", error);
     }
@@ -105,102 +105,62 @@ export default function Contact() {
       <div
         className="d-flex justify-content-center align-items-center rounded-3 border shadow-lg contact-background-image"
         style={{
-          backgroundImage: imageData?.image_url
-            ? `url(${imageData.image_url})`
-            : `url(${contactBackgroundImage})`,
+          backgroundImage: `url(${imageData.image_url})`,
         }}
       >
         <div className="d-flex flex-column p-5 m-5 rounded-5 border shadow-lg">
           <h1 className="display-4 lh-1 text-center m-5 fw-bold">Contact Us</h1>
           <p className="lead lh-6 fs-4 m-4 fw-bold">Email : </p>
-          {emails.length
-            ? emails.map((email) => {
-                return (
-                  <p key={email.id} className="lead lh-1 fs-4 m-4">
-                    {email.address}
-                  </p>
-                );
-              })
-            : sampleEmails.map((email) => {
-                return (
-                  <p key={email.id} className="lead lh-1 fs-4 m-4">
-                    {email.address}
-                  </p>
-                );
-              })}
+          {emails.map((email, index) => {
+            return (
+              <p key={`email-${index}`} className="lead lh-1 fs-4 m-4">
+                {email.address}
+              </p>
+            );
+          })}
 
           <p className="lead lh-1 fs-4 m-4 fw-bold">
             Follow us :
-            {socialMediaLinks.length
-              ? socialMediaLinks.map((socialmedia) => {
-                  return (
-                    <a
-                      key={`social-media-link-${socialmedia.id}`}
-                      href={socialmedia.url}
-                      target="_blank"
-                    >
-                      <img
-                        key={`social-media-image-${socialmedia.id}`}
-                        src={socialmedia.image_url}
-                        alt="Icon"
-                        height={30}
-                        style={{ marginLeft: "20px" }}
-                      />
-                    </a>
-                  );
-                })
-              : sampleSocialMedia.map((socialmedia) => {
-                  return (
-                    <a
-                      key={`social-media-link-${socialmedia.id}`}
-                      href={socialmedia.url}
-                      target="_blank"
-                    >
-                      <img
-                        key={`social-media-image-${socialmedia.id}`}
-                        src={socialmedia.image_url}
-                        alt="Icon"
-                        height={30}
-                        style={{ marginLeft: "20px" }}
-                      />
-                    </a>
-                  );
-                })}
+            {socialMediaLinks.map((socialmedia, index) => {
+              return (
+                <a
+                  key={`social-media-link-${index}`}
+                  href={socialmedia.url}
+                  target="_blank"
+                >
+                  <img
+                    key={`social-media-image-${index}`}
+                    src={socialmedia.image_url}
+                    alt="Icon"
+                    height={30}
+                    style={{ marginLeft: "20px" }}
+                  />
+                </a>
+              );
+            })}
           </p>
           <p className="lead lh-1 fs-4 m-4 fw-bold">Phone Number :</p>
           <div className="lead lh-base fs-4 m-4 d-flex justify-content-between flex-wrap">
             <ul className="list-inline">
-              {phoneNumber.length
-                ? phoneNumber.map((phone) => {
-                    return (
-                      <>
-                        <li className="list-inline-item">
-                          <img
-                            className="m-2"
-                            src={phone.image_url}
-                            alt="Country icon"
-                            height={30}
-                          />
-                          {phone.number}
-                        </li>
-                      </>
-                    );
-                  })
-                : samplePhoneNumber.map((phone) => {
-                    return (
-                      <>
-                        <li className="list-inline-item">
-                          <img
-                            className="m-2"
-                            src={phone.image_url}
-                            alt="Country icon"
-                            height={30}
-                          />
-                          {phone.number}
-                        </li>
-                      </>
-                    );
-                  })}
+              {phoneNumbers.map((phone, index) => {
+                return (
+                  <>
+                    <li
+                      key={`phone-number-${index}`}
+                      className="list-inline-item"
+                    >
+                      <img
+                        key={`country-code-image-${index}`}
+                        className="m-2"
+                        src={phone.image_url}
+                        alt="Country icon"
+                        height={30}
+                      />
+                      {phone.number}
+                    </li>
+                  </>
+                );
+              })}
             </ul>
           </div>
         </div>

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import aboutBackgroundImage from "./assets/slider-image-1.svg";
 import { about } from "./services";
+import placeholderImage from "./assets/placeholder.svg";
 
 export default function About() {
   const [aboutData, setAboutData] = useState([]);
 
-  const sampleData = {
+  const sampleAboutData = {
     id: 1,
-    image: aboutBackgroundImage,
+    image_url: placeholderImage,
     paragraph_1: `Wanted Games is a Ukraine-based game development company passionate
             about crafting engaging and innovative experiences.`,
     paragraph_2: `Collaboration is at the core of our philosophy—every game we’ve
@@ -30,7 +30,7 @@ export default function About() {
     try {
       const data = await about();
       let aboutData = data.find((data) => data.sort_id === 1);
-      setAboutData(aboutData);
+      setAboutData(aboutData ? aboutData : sampleAboutData);
     } catch (error) {
       console.error("Error fetching about data", error);
     }
@@ -41,30 +41,16 @@ export default function About() {
       <div
         className="row p-md-5 p-sm-4 align-items-center rounded-3 border shadow-lg about-background-image"
         style={{
-          backgroundImage: aboutData.image
-            ? `url(${aboutData.image})`
-            : `url(${aboutBackgroundImage})`,
+          backgroundImage: `url(${aboutData.image_url})`,
         }}
       >
         <div className="col-xl-6 col-lg-8 col-md-9 col-sm-10 col-12 offset-xl-3 offset-lg-2 offset-md-2 offset-sm-1 rounded-5 border shadow-lg">
           <h1 className="display-4 lh-1 text-center m-5 fw-bold">
-            {aboutData.title ? aboutData.title : sampleData.title}
+            {aboutData.title}
           </h1>
-          <p className="lead lh-base fs-4 m-5">
-            {aboutData.paragraph_1
-              ? aboutData.paragraph_1
-              : sampleData.paragraph_1}
-          </p>
-          <p className="lead lh-base fs-4 m-5">
-            {aboutData.paragraph_2
-              ? aboutData.paragraph_2
-              : sampleData.paragraph_2}
-          </p>
-          <p className="lead lh-base fs-4 m-5">
-            {aboutData.paragraph_3
-              ? aboutData.paragraph_3
-              : sampleData.paragraph_3}
-          </p>
+          <p className="lead lh-base fs-4 m-5">{aboutData.paragraph_1}</p>
+          <p className="lead lh-base fs-4 m-5">{aboutData.paragraph_2}</p>
+          <p className="lead lh-base fs-4 m-5">{aboutData.paragraph_3}</p>
         </div>
       </div>
     </div>

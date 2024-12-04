@@ -1,11 +1,34 @@
-import wantedGamesLogo from "./assets/logo.png";
+import { useState, useEffect } from "react";
+import wantedGamesLogo from "../logo.png";
+import { media } from "./services";
 
 export default function Navbar() {
+  const sampleMediaData = {
+    id: 2,
+    image_url: wantedGamesLogo,
+    label: "logo",
+  };
+
+  const [logoImage, setLogoImage] = useState([]);
+
+  useEffect(() => {
+    fetchMediaData();
+  }, []);
+
+  const fetchMediaData = async () => {
+    try {
+      const data = await media();
+      const logo = data.find((x) => x.label === "logo");
+      setLogoImage(logo ? logo : sampleMediaData);
+    } catch (error) {
+      console.error("Error fetching media data", error);
+    }
+  };
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-light fixed-top">
         <a className="navbar-brand" href="#">
-          <img src={wantedGamesLogo} alt="Wanted games logo" height={50} />
+          <img src={logoImage.image_url} alt="Wanted games logo" height={50} />
         </a>
 
         <div
@@ -39,7 +62,7 @@ export default function Navbar() {
                   textTransform: "uppercase",
                 }}
               >
-                <h3> Games</h3>
+                <h3>Games</h3>
               </a>
             </li>
             <li className="nav-item">
@@ -51,10 +74,9 @@ export default function Navbar() {
                   paddingLeft: "20px",
                   paddingRight: "20px",
                   textTransform: "uppercase",
-                  // fontWeight: 700,
                 }}
               >
-                <h3> Contact Us</h3>
+                <h3>Contact Us</h3>
               </a>
             </li>
           </ul>

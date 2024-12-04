@@ -2,7 +2,7 @@ import "./App.css";
 import Navbar from "./Navbar";
 import Home from "./Home";
 import About from "./About";
-import Carousel from "./Carousel";
+import Gallery from "./Gallery";
 import Games from "./Games";
 import Contact from "./Contact";
 import Footer from "./Footer";
@@ -15,7 +15,7 @@ export default function App() {
       <div style={{ minWidth: "375px" }}>
         <Home />
         <About />
-        <Carousel />
+        <Gallery />
         <Games />
         <Testimonials />
         <Contact />

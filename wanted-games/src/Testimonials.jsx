@@ -2,7 +2,9 @@ export default function Testimonials() {
   return (
     <div className="container">
       <div className="m-5 p-1">
-        <h1 className="text-center m-5">Video reviews of our games</h1>
+        <h3 className="display-4 text-center m-5">
+          Video reviews of our games
+        </h3>
         <div className="d-flex justify-content-evenly flex-wrap">
           <iframe
             className="m-5"
@@ -13,7 +15,6 @@ export default function Testimonials() {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
-            allowfullscreen
           ></iframe>
           <iframe
             className="m-5"
@@ -24,7 +25,6 @@ export default function Testimonials() {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
-            allowfullscreen
           ></iframe>
         </div>
       </div>

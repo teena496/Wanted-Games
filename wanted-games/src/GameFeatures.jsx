@@ -12,8 +12,8 @@ export default function GameFeatures(props) {
           className="featurette-image img-fluid mx-auto"
           alt="Game Time Icon"
           src={props.gameTimeIcon}
-          height={100}
-          width={100}
+          height={90}
+          width={90}
           style={{ backgroundColor: props.backgroundColor }}
         />
       </div>
@@ -25,8 +25,8 @@ export default function GameFeatures(props) {
           className="featurette-image img-fluid mx-auto"
           alt="Game Players Icon"
           src={props.gamePlayersIcon}
-          height={100}
-          width={100}
+          height={90}
+          width={90}
           style={{ backgroundColor: props.backgroundColor }}
         />
       </div>
@@ -38,8 +38,8 @@ export default function GameFeatures(props) {
           className="featurette-image img-fluid mx-auto"
           alt="Game Age Icon"
           src={props.gameAgeIcon}
-          height={100}
-          width={100}
+          height={90}
+          width={90}
           style={{ backgroundColor: props.backgroundColor }}
         />
       </div>
