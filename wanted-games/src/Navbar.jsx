@@ -5,7 +5,7 @@ export default function Navbar() {
     <header>
       <nav className="navbar navbar-expand-lg navbar-expand-md navbar-expand-sm navbar-light fixed-top">
         <a className="navbar-brand" href="#">
-          <img src={wantedGamesLogo} alt="Wanted games logo" height={40} />
+          <img src={wantedGamesLogo} alt="Wanted games logo" height={50} />
         </a>
 
         <div
