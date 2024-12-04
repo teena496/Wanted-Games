@@ -49,6 +49,7 @@ export default function Home() {
       const data = await home();
       setHomeData(data.length ? data : sampleHomeData);
     } catch (error) {
+      setHomeData(sampleHomeData);
       console.error("Error fetching home data", error);
     }
   };
@@ -58,6 +59,7 @@ export default function Home() {
       const data = await social();
       setSocialMediaLinks(data.length ? data : sampleSocialMedia);
     } catch (error) {
+      setSocialMediaLinks(sampleSocialMedia);
       console.error("Error fetching social media data", error);
     }
   };

@@ -68,6 +68,7 @@ export default function Contact() {
       const data = await email();
       setEmails(data.length ? data : sampleEmails);
     } catch (error) {
+      setEmails(sampleEmails);
       console.error("Error fetching emails", error);
     }
   };
@@ -77,6 +78,7 @@ export default function Contact() {
       const data = await phone();
       setPhoneNumbers(data.length ? data : samplePhoneNumbers);
     } catch (error) {
+      setPhoneNumbers(samplePhoneNumbers);
       console.error("Error fetching phone numbers", error);
     }
   };
@@ -86,6 +88,7 @@ export default function Contact() {
       const data = await social();
       setSocialMediaLinks(data.length ? data : sampleSocialMedia);
     } catch (error) {
+      setSocialMediaLinks(sampleSocialMedia);
       console.error("Error fetching social media data", error);
     }
   };
@@ -96,6 +99,7 @@ export default function Contact() {
       let backgroundImage = data.find((x) => x.label === "background_image");
       setImageData(backgroundImage ? backgroundImage : sampleMediaData);
     } catch (error) {
+      setImageData(sampleMediaData);
       console.error("Error fetching media data", error);
     }
   };

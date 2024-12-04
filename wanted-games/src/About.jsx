@@ -32,6 +32,7 @@ export default function About() {
       let aboutData = data.find((data) => data.sort_id === 1);
       setAboutData(aboutData ? aboutData : sampleAboutData);
     } catch (error) {
+      setAboutData(sampleAboutData);
       console.error("Error fetching about data", error);
     }
   };

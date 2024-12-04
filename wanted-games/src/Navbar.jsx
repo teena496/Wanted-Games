@@ -21,6 +21,7 @@ export default function Navbar() {
       const logo = data.find((x) => x.label === "logo");
       setLogoImage(logo ? logo : sampleMediaData);
     } catch (error) {
+      setLogoImage(sampleMediaData);
       console.error("Error fetching media data", error);
     }
   };

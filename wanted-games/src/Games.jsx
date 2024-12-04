@@ -100,6 +100,7 @@ export default function Games() {
       const data = await games();
       setGameData(data.length ? data : sampleGameData);
     } catch (error) {
+      setGameData(sampleGameData);
       console.error("Error fetching games", error);
     }
   };

@@ -32,6 +32,7 @@ function Gallery() {
       const galleryData = await gallery();
       setGalleryImages(galleryData.length ? galleryData : sampleGalleryData);
     } catch (error) {
+      setGalleryImages(sampleGalleryData);
       console.error("Error fetching gallery images", error);
     }
   };
