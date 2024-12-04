@@ -10,7 +10,7 @@ export default function Contact() {
   };
   const sampleEmails = [
     {
-      address: "wanted.games.production@gmail.com",
+      address: "",
       id: 1,
     },
   ];
@@ -19,13 +19,13 @@ export default function Contact() {
     {
       id: 1,
       image_url: placeholderImage,
-      number: "+1 416 818 7147",
+      number: "",
       sort_id: 1,
     },
     {
       id: 2,
       image_url: placeholderImage,
-      number: "+38 093 266 2988",
+      number: "",
       sort_id: 2,
     },
   ];
@@ -35,19 +35,19 @@ export default function Contact() {
       id: 1,
       image_url: placeholderImage,
       sort_id: 1,
-      url: "https://www.instagram.com/wanted_games_ukr/",
+      url: "",
     },
     {
       id: 2,
       image_url: placeholderImage,
       sort_id: 2,
-      url: "https://www.facebook.com/wanted.games.ukr",
+      url: "",
     },
     {
       id: 3,
       image_url: placeholderImage,
       sort_id: 3,
-      url: "https://www.linkedin.com",
+      url: "",
     },
   ];
 

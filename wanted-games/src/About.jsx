@@ -4,22 +4,14 @@ import placeholderImage from "./assets/placeholder.svg";
 
 export default function About() {
   const [aboutData, setAboutData] = useState([]);
-
   const sampleAboutData = {
     id: 1,
     image_url: placeholderImage,
-    paragraph_1: `Wanted Games is a Ukraine-based game development company passionate
-            about crafting engaging and innovative experiences.`,
-    paragraph_2: `Collaboration is at the core of our philosophy—every game we’ve
-            released has been created in partnership with incredible
-            collaborators from around the industry and beyond. By blending
-            unique perspectives, cutting-edge design, and storytelling, we
-            deliver high-quality titles that resonate with players worldwide.`,
-    paragraph_3: `Proud of our Ukrainian roots, we believe great games are built
-            together and are committed to leaving a lasting impact on the gaming
-            community.`,
+    paragraph_1: "",
+    paragraph_2: "",
+    paragraph_3: "",
     sort_id: 1,
-    title: "About Us",
+    title: "",
   };
 
   useEffect(() => {
@@ -30,7 +22,7 @@ export default function About() {
     try {
       const data = await about();
       let aboutData = data.find((data) => data.sort_id === 1);
-      setAboutData(aboutData ? aboutData : sampleAboutData);
+      setAboutData(aboutData);
     } catch (error) {
       setAboutData(sampleAboutData);
       console.error("Error fetching about data", error);

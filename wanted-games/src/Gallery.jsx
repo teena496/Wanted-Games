@@ -52,7 +52,7 @@ function Gallery() {
       <div className="row m-lg-5 m-md-4 m-sm-1 ">
         <div className="col-lg-12 col-md-12 col-sm-12 ">
           <div className="slider-container ">
-            <h3 className="display-4 text-center m-5">Gallery</h3>
+            <h1 className="display-4 text-center m-5 fw-bold">Gallery</h1>
             <Slider {...settings}>
               {galleryImages.map((image) => {
                 return (

@@ -9,9 +9,10 @@ export default function Home() {
       id: 1,
       sort_id: 1,
       image_url: placeholderImage,
-      header: "Unbox fun, Roll into Adventure!",
+      header: "",
       paragraph_1: "",
       paragraph_2: "",
+      action: "",
     },
   ];
 
@@ -20,19 +21,19 @@ export default function Home() {
       id: 1,
       image_url: placeholderImage,
       sort_id: 1,
-      url: "https://www.instagram.com/wanted_games_ukr/",
+      url: "",
     },
     {
       id: 2,
       image_url: placeholderImage,
       sort_id: 2,
-      url: "https://www.facebook.com/wanted.games.ukr",
+      url: "",
     },
     {
       id: 3,
       image_url: placeholderImage,
       sort_id: 3,
-      url: "https://www.linkedin.com/company/wanted-games-ukraine/",
+      url: "",
     },
   ];
 
@@ -47,6 +48,7 @@ export default function Home() {
   const fetchHomeData = async () => {
     try {
       const data = await home();
+      console.log(data);
       setHomeData(data.length ? data : sampleHomeData);
     } catch (error) {
       setHomeData(sampleHomeData);
@@ -153,7 +155,7 @@ export default function Home() {
               fontFamily: "Cinzel",
             }}
           >
-            Follow Us!
+            {homeData[0]?.action}
             <br />
             {socialMediaLinks.map((socialMedia, index) => {
               return (
