@@ -3,54 +3,6 @@ import { email, media, phone, social } from "./services";
 import placeholderImage from "./assets/placeholder.svg";
 
 export default function Contact() {
-  const sampleMediaData = {
-    id: 1,
-    image_url: placeholderImage,
-    label: "background_image",
-  };
-  const sampleEmails = [
-    {
-      address: "",
-      id: 1,
-    },
-  ];
-
-  const samplePhoneNumbers = [
-    {
-      id: 1,
-      image_url: placeholderImage,
-      number: "",
-      sort_id: 1,
-    },
-    {
-      id: 2,
-      image_url: placeholderImage,
-      number: "",
-      sort_id: 2,
-    },
-  ];
-
-  const sampleSocialMedia = [
-    {
-      id: 1,
-      image_url: placeholderImage,
-      sort_id: 1,
-      url: "",
-    },
-    {
-      id: 2,
-      image_url: placeholderImage,
-      sort_id: 2,
-      url: "",
-    },
-    {
-      id: 3,
-      image_url: placeholderImage,
-      sort_id: 3,
-      url: "",
-    },
-  ];
-
   const [emails, setEmails] = useState([]);
   const [phoneNumbers, setPhoneNumbers] = useState([]);
   const [socialMediaLinks, setSocialMediaLinks] = useState([]);
@@ -66,9 +18,8 @@ export default function Contact() {
   const fetchEmailData = async () => {
     try {
       const data = await email();
-      setEmails(data.length ? data : sampleEmails);
+      setEmails(data);
     } catch (error) {
-      setEmails(sampleEmails);
       console.error("Error fetching emails", error);
     }
   };
@@ -76,9 +27,8 @@ export default function Contact() {
   const fetchPhoneData = async () => {
     try {
       const data = await phone();
-      setPhoneNumbers(data.length ? data : samplePhoneNumbers);
+      setPhoneNumbers(data);
     } catch (error) {
-      setPhoneNumbers(samplePhoneNumbers);
       console.error("Error fetching phone numbers", error);
     }
   };
@@ -86,9 +36,8 @@ export default function Contact() {
   const fetchSocialData = async () => {
     try {
       const data = await social();
-      setSocialMediaLinks(data.length ? data : sampleSocialMedia);
+      setSocialMediaLinks(data);
     } catch (error) {
-      setSocialMediaLinks(sampleSocialMedia);
       console.error("Error fetching social media data", error);
     }
   };
@@ -97,9 +46,8 @@ export default function Contact() {
     try {
       const data = await media();
       let backgroundImage = data.find((x) => x.label === "background_image");
-      setImageData(backgroundImage ? backgroundImage : sampleMediaData);
+      setImageData(backgroundImage);
     } catch (error) {
-      setImageData(sampleMediaData);
       console.error("Error fetching media data", error);
     }
   };
@@ -109,7 +57,9 @@ export default function Contact() {
       <div
         className="d-flex justify-content-center align-items-center rounded-3 border shadow-lg contact-background-image"
         style={{
-          backgroundImage: `url(${imageData.image_url})`,
+          backgroundImage: imageData.image_url
+            ? `url(${imageData.image_url})`
+            : placeholderImage,
         }}
       >
         <div className="d-flex flex-column p-5 m-5 rounded-5 border shadow-lg">
@@ -134,7 +84,11 @@ export default function Contact() {
                 >
                   <img
                     key={`social-media-image-${index}`}
-                    src={socialmedia.image_url}
+                    src={
+                      socialmedia.image_url
+                        ? socialmedia.image_url
+                        : placeholderImage
+                    }
                     alt="Icon"
                     height={30}
                     style={{ marginLeft: "20px" }}
@@ -156,7 +110,9 @@ export default function Contact() {
                       <img
                         key={`country-code-image-${index}`}
                         className="m-2"
-                        src={phone.image_url}
+                        src={
+                          phone.image_url ? phone.image_url : placeholderImage
+                        }
                         alt="Country icon"
                         height={30}
                       />

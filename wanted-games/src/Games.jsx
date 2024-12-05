@@ -38,7 +38,7 @@ export default function Games() {
   };
 
   return (
-    <div id="games" className="container pt-1">
+    <div id="games" className="container pt-2">
       <h1 className="display-4 text-center m-5 p-5 fw-bold">Our Games</h1>
       {gameData.map((game) => {
         return (

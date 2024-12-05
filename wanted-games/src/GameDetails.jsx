@@ -26,17 +26,7 @@ export default function GameDetails(props) {
               color: props.textColor,
             }}
           >
-            <a
-              href={props.gameLink}
-              style={{
-                textDecoration: "none",
-                color: "black",
-                fontFamily: "Cinzel",
-              }}
-              target="_blank"
-            >
-              {props.gameTitle}
-            </a>
+            {props.gameTitle}
           </h1>
           <p
             className="lead lh-base fs-4"

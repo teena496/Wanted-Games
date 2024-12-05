@@ -47,14 +47,10 @@ export default function Testimonials() {
   return (
     <div className="container">
       <div className="m-5 p-1">
-        <h1 className="display-4 text-center m-5 fw-bold">
-          Video reviews of our games
-        </h1>
+        <h1 className="display-4 text-center m-5 fw-bold">Game Videos</h1>
         <div className="d-flex justify-content-evenly flex-wrap">
           {gameData.map((video) => {
             const videoId = getId(video.url);
-
-            console.log(video.url);
             return (
               <>
                 <iframe

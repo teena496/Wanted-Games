@@ -4,15 +4,6 @@ import placeholderImage from "./assets/placeholder.svg";
 
 export default function About() {
   const [aboutData, setAboutData] = useState([]);
-  const sampleAboutData = {
-    id: 1,
-    image_url: placeholderImage,
-    paragraph_1: "",
-    paragraph_2: "",
-    paragraph_3: "",
-    sort_id: 1,
-    title: "",
-  };
 
   useEffect(() => {
     fetchAboutData();
@@ -24,7 +15,6 @@ export default function About() {
       let aboutData = data.find((data) => data.sort_id === 1);
       setAboutData(aboutData);
     } catch (error) {
-      setAboutData(sampleAboutData);
       console.error("Error fetching about data", error);
     }
   };
@@ -34,7 +24,9 @@ export default function About() {
       <div
         className="row p-md-5 p-sm-4 align-items-center rounded-3 border shadow-lg about-background-image"
         style={{
-          backgroundImage: `url(${aboutData.image_url})`,
+          backgroundImage: aboutData.image_url
+            ? `url(${aboutData.image_url})`
+            : `url(${placeholderImage})`,
         }}
       >
         <div className="col-xl-6 col-lg-8 col-md-9 col-sm-10 col-12 offset-xl-3 offset-lg-2 offset-md-2 offset-sm-1 rounded-5 border shadow-lg">
