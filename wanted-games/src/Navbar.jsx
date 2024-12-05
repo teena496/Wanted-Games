@@ -1,8 +1,11 @@
+import styles from "./Navbar.module.css";
 import { useState, useEffect } from "react";
 import placeholderImage from "./assets/placeholder.svg";
 import { about, media } from "./services";
 
-export default function Navbar() {
+function Navbar() {
+  const [isActive, setIsActive] = useState(false);
+
   const sampleMediaData = {
     id: 2,
     image_url: placeholderImage,
@@ -48,80 +51,55 @@ export default function Navbar() {
       console.error("Error fetching media data", error);
     }
   };
+
+  const toggleActiveClass = () => {
+    setIsActive(!isActive);
+  };
+
+  const removeActive = () => {
+    setIsActive(false);
+  };
+
   return (
-    <div className="p-3 m-0 border-0 m-0 ">
-      <nav className="navbar navbar-expand-sm navbar-light fixed-top">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+    <div className="App" style={{ position: "sticky", top: 0, zIndex: 1 }}>
+      <header className="App-header">
+        <nav className={`${styles.navbar}`}>
+          <a href="#" className={`${styles.logo}`}>
             <img
               src={logoImage.image_url}
               alt="Wanted games logo"
               height={50}
             />
           </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarToggler"
-            aria-controls="navbarToggler"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <div></div>
+          <ul className={`${styles.navMenu} ${isActive ? styles.active : ""}`}>
+            <li onClick={removeActive}>
+              <a href="#about" className={`${styles.navLink}`}>
+                <h3>{aboutData.title}</h3>
+              </a>
+            </li>
+            <li onClick={removeActive}>
+              <a href="#games" className={`${styles.navLink}`}>
+                <h3>Games</h3>
+              </a>
+            </li>
+            <li onClick={removeActive}>
+              <a href="#contact" className={`${styles.navLink}`}>
+                <h3>Contact Us</h3>
+              </a>
+            </li>
+          </ul>
           <div
-            className="collapse navbar-collapse justify-content-end align-center"
-            id="navbarToggler"
+            className={`${styles.hamburger} ${isActive ? styles.active : ""}`}
+            onClick={toggleActiveClass}
           >
-            <ul className="navbar-nav mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a
-                  className="nav-link fs-4 fw-bold"
-                  href="#about"
-                  style={{
-                    textDecoration: "none",
-                    paddingLeft: "20px",
-                    paddingRight: "20px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  <h3>{aboutData.title}</h3>
-                  <span className="sr-only">(current)</span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link fs-4 fw-bold"
-                  href="#games"
-                  style={{
-                    textDecoration: "none",
-                    paddingLeft: "20px",
-                    paddingRight: "20px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  <h3>Games</h3>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link fs-4 fw-bold"
-                  href="#contact"
-                  style={{
-                    textDecoration: "none",
-                    paddingLeft: "20px",
-                    paddingRight: "20px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  <h3>Contact Us</h3>
-                </a>
-              </li>
-            </ul>
+            <span className={`${styles.bar}`}></span>
+            <span className={`${styles.bar}`}></span>
+            <span className={`${styles.bar}`}></span>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
     </div>
   );
 }
+export default Navbar;

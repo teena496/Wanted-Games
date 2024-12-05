@@ -70,7 +70,7 @@ export default function Home() {
     <div
       className="container rounded-4 border shadow-lg"
       style={{
-        marginTop: "75px",
+        marginTop: "10px",
         marginBottom: "100px",
         backgroundColor: backgroundColor,
       }}

@@ -10,17 +10,15 @@ import Testimonials from "./Testimonials";
 
 export default function App() {
   return (
-    <>
+    <div style={{ minWidth: "375px" }}>
       <Navbar />
-      <div style={{ minWidth: "375px" }}>
-        <Home />
-        <About />
-        <Gallery />
-        <Games />
-        <Testimonials />
-        <Contact />
-      </div>
+      <Home />
+      <About />
+      <Gallery />
+      <Games />
+      <Testimonials />
+      <Contact />
       <Footer />
-    </>
+    </div>
   );
 }
